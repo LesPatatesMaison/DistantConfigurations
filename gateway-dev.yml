@@ -23,7 +23,7 @@ spring:
     gateway:
       routes:
         - id: lb_route
-          uri: lb://dev-msrecherche
+          uri: lb://msrecherche
           predicates:
             - Path=/**
           filters:
