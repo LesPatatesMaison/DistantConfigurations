@@ -11,6 +11,7 @@ registry:
   server:
     name: localhost
     port: 8050
+
 eureka:
   client:
     service-url:
@@ -25,16 +26,13 @@ spring:
         - id: lb_route
           uri: lb://msrecherche
           predicates:
-            - Path=/recherche/**
+              - Path=/recherche/**
           filters:
-            - RewritePath=/recherche/(?<segment>.*), /$\{segment}
+              - RewritePath=/recherche/(?<segment>.*), /$\{segment}
 
         - id: lb_route
           uri: lb://msreservation
           predicates:
-            - Path=/reservation/**
+              - Path=/reservation/**
           filters:
-            - RewritePath=/reservation/(?<segment>.*), /$\{segment}
-
-
-
+              - RewritePath=/(?<segment>.*), /$\{segment}

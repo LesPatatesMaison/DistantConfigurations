@@ -11,7 +11,28 @@ registry:
   server:
     name: localhost
     port: 8150
+
 eureka:
   client:
     service-url:
       defaultZone: http://${registry.server.name}:${registry.server.port}/eureka
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: lb_route
+          uri: lb://msrecherche
+          predicates:
+              - Path=/recherche/**
+          filters:
+              - RewritePath=/recherche/(?<segment>.*), /$\{segment}
+
+        - id: lb_route
+          uri: lb://msreservation
+          predicates:
+              - Path=/reservation/**
+          filters:
+              - RewritePath=/(?<segment>.*), /$\{segment}
