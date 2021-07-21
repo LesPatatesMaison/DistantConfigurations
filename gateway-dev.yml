@@ -1,0 +1,32 @@
+# ===============================
+# Appli gateway
+# ===============================
+server:
+  port: 8060
+
+# ===============================
+# Eureka config
+# ===============================
+registry:
+  server:
+    name: localhost
+    port: 8050
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.server.name}:${registry.server.port}/eureka
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: lb_route
+          uri: lb://dev-msrecherche
+          predicates:
+            - Path=/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+
+
