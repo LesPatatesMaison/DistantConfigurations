@@ -25,8 +25,16 @@ spring:
         - id: lb_route
           uri: lb://msrecherche
           predicates:
-            - Path=/**
+            - Path=/recherche/**
           filters:
-            - RewritePath=/(?<segment>.*), /$\{segment}
+            - RewritePath=/recherche/(?<segment>.*), /$\{segment}
+
+        - id: lb_route
+          uri: lb://msreservation
+          predicates:
+            - Path=/reservation/**
+          filters:
+            - RewritePath=/reservation/(?<segment>.*), /$\{segment}
+
 
 
