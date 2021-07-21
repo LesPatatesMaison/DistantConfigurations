@@ -1,0 +1,17 @@
+# ===============================
+# Appli gateway
+# ===============================
+server:
+  port: 8160
+
+# ===============================
+# Eureka config
+# ===============================
+registry:
+  server:
+    name: localhost
+    port: 8150
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.server.name}:${registry.server.port}/eureka
