@@ -36,9 +36,10 @@ spring:
               - Path=/reservation/**
           filters:
               - RewritePath=/(?<segment>.*), /$\{segment}
+              -
         - id: lb_route
-            uri: lb://msreservation
-            predicates:
-              - Path=/user/**
-            filters:
-              - RewritePath=/(?<segment>.*), /$\{segment}
+          uri: lb://msreservation
+          predicates:
+            - Path=/user/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
