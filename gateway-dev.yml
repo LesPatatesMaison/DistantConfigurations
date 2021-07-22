@@ -35,4 +35,4 @@ spring:
           predicates:
               - Path=/reservation/**
           filters:
-              - RewritePath=/(?<segment>.*), /$\{segment}
+              - RewritePath=/reservation/(?<segment>.*), /$\{segment}
