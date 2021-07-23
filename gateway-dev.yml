@@ -43,3 +43,4 @@ spring:
             - Path=/user/**
           filters:
             - RewritePath=/(?<segment>.*), /$\{segment}
+            - AddResponseHeader=Access-Control-Allow-Origin, *
